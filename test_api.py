@@ -1,7 +1,12 @@
 import requests
+import json
 
-# URL de la API
-api_url = "https://jsonplaceholder.typicode.com/posts/1"
+# Cargar configuración desde el archivo JSON
+with open("config.json", "r") as config_file:
+    config = json.load(config_file)
+
+# Obtener la URL desde el archivo de configuración
+api_url = config["api_url"]
 
 # Realizar la petición GET
 response = requests.get(api_url)
@@ -17,3 +22,4 @@ expected_title = "sunt aut facere repellat provident occaecati excepturi optio r
 assert data["title"] == expected_title, f"Error: Se esperaba '{expected_title}', pero se obtuvo '{data['title']}'"
 
 print("Prueba exitosa: El título del JSON es correcto.")
+

@@ -1,13 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import json
 import time
+
+# Cargar configuración desde el archivo JSON
+with open("config.json", "r") as config_file:
+    config = json.load(config_file)
+
+# Obtener la URL desde el archivo de configuración
+web_url = config["web_url"]
 
 # Configura el WebDriver (usando Chrome en este ejemplo)
 driver = webdriver.Chrome()
 
 try:
     # Navegar a la página
-    driver.get("https://jsonplaceholder.typicode.com/")
+    driver.get(web_url)
     
     # Esperar unos segundos para asegurarse de que la página haya cargado
     time.sleep(2)
